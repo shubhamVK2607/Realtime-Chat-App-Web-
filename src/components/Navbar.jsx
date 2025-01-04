@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 
-import { LogOut, MessageSquare, Settings, User } from "lucide-react";
+import {
+  LogOut,
+  MessageSquare,
+  Settings,
+  User,
+  MessageSquareText,
+} from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 
 const Navbar = () => {
@@ -42,7 +48,7 @@ const Navbar = () => {
                 </Link>
 
                 <Link to={"/chat"} className={`btn btn-sm gap-2`}>
-                  {/* <User className="size-5" /> */}
+                  <MessageSquareText className="size-5" />
                   <span className="hidden sm:inline">Chat</span>
                 </Link>
 
