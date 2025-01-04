@@ -9,7 +9,9 @@ const BASE_URL =
     : "http://54.72.235.242/api";
 
 const socketUrl =
-  import.meta.env.MODE === "development" ? BASE_URL : BASE_URL + "/socket.io";
+  import.meta.env.MODE === "development"
+    ? BASE_URL
+    : "http://54.72.235.242/socket.io";
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
