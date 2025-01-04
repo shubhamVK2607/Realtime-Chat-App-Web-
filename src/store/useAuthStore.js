@@ -8,6 +8,9 @@ const BASE_URL =
     ? "http://localhost:5001"
     : "http://54.72.235.242/api";
 
+const socketUrl =
+  import.meta.env.MODE === "development" ? BASE_URL : BASE_URL + "/socket.io";
+
 export const useAuthStore = create((set, get) => ({
   authUser: null,
   isSigningUp: false,
@@ -90,7 +93,7 @@ export const useAuthStore = create((set, get) => ({
     const { authUser } = get();
     if (!authUser || get().socket?.connected) return;
 
-    const socket = io(BASE_URL, {
+    const socket = io(socketUrl, {
       query: {
         userId: authUser._id,
       },
