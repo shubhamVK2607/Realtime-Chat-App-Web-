@@ -93,6 +93,7 @@ export const useAuthStore = create((set, get) => ({
         userId: authUser._id,
       },
     });
+    console.log("Base URL", BASE_URL);
     socket.connect();
 
     set({ socket: socket });

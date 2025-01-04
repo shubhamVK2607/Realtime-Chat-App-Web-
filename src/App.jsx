@@ -20,7 +20,6 @@ const App = () => {
     console.log("useEffect for checkAuth");
     checkAuth();
   }, [checkAuth]);
-  console.log(authUser);
 
   if (isCheckingAuth && !authUser) {
     return (
