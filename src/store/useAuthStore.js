@@ -79,7 +79,6 @@ export const useAuthStore = create((set, get) => ({
   updateProfile: async (data) => {
     set({ isUpdatingProfile: true });
     try {
-      console.log("data----", data);
       const res = await axiosInstance.put("/auth/update-profile", data);
       set({ authUser: res.data });
       toast.success("Profile updated successfully");
@@ -94,20 +93,18 @@ export const useAuthStore = create((set, get) => ({
   connectSocket: () => {
     const { authUser } = get();
     if (!authUser || get().socket?.connected) return;
-    console.log("socket ur new--", socketUrl);
 
     const socket = io(socketUrl, {
       query: {
         userId: authUser._id,
       },
     });
-    console.log("Base URL", BASE_URL);
+
     socket.connect();
 
     set({ socket: socket });
 
     socket.on("getOnlineUsers", (userIds) => {
-      console.log("socket on is running--", userIds);
       set({ onlineUsers: userIds });
     });
   },
