@@ -11,7 +11,7 @@ const BASE_URL =
 const socketUrl =
   import.meta.env.MODE === "development"
     ? BASE_URL
-    : "http://54.72.235.242/socket.io";
+    : "http://54.72.235.242/api/socket.io";
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
@@ -94,6 +94,7 @@ export const useAuthStore = create((set, get) => ({
   connectSocket: () => {
     const { authUser } = get();
     if (!authUser || get().socket?.connected) return;
+    console.log("socket ur new--", socketUrl);
 
     const socket = io(socketUrl, {
       query: {
