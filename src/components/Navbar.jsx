@@ -10,10 +10,15 @@ import {
 } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useFeedStore } from "../store/useFeedStore";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const { logout, authUser } = useAuthStore();
-  const { receivedRequests } = useFeedStore();
+  const { receivedRequests, getRecivedConnectionRequests } = useFeedStore();
+
+  useEffect(() => {
+    if (authUser) getRecivedConnectionRequests();
+  }, [getRecivedConnectionRequests, authUser]);
 
   return (
     <header
