@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Almost invisible scrollbar */
+.scrollbar-ultra-thin {
+  scrollbar-width: none; /* For Firefox */
+}
+
+.scrollbar-ultra-thin::-webkit-scrollbar {
+  width: 2px; /* Ultra-thin width */
+}
+
+.scrollbar-ultra-thin::-webkit-scrollbar-thumb {
+  background-color: lightgray; /* Thumb color */
+  border-radius: 10px;
+}
+
+.scrollbar-ultra-thin::-webkit-scrollbar-track {
+  background: transparent; /* Transparent track */
+}

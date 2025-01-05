@@ -11,13 +11,13 @@ import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 import { useThemeStore } from "./store/useThemeStore";
 import HomePage from "./pages/HomePage";
+import ConnectionRequestPage from "./pages/ConnectionRequestPage";
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
   const { theme } = useThemeStore();
 
   useEffect(() => {
-    console.log("useEffect for checkAuth");
     checkAuth();
   }, [checkAuth]);
 
@@ -39,6 +39,12 @@ const App = () => {
         <Route
           path="/chat"
           element={authUser ? <ChatPage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/request"
+          element={
+            authUser ? <ConnectionRequestPage /> : <Navigate to="/login" />
+          }
         />
         <Route
           path="/login"

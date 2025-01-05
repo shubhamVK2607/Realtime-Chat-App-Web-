@@ -6,11 +6,14 @@ import {
   Settings,
   User,
   MessageSquareText,
+  UserPlusIcon,
 } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
+import { useFeedStore } from "../store/useFeedStore";
 
 const Navbar = () => {
   const { logout, authUser } = useAuthStore();
+  const { receivedRequests } = useFeedStore();
 
   return (
     <header
@@ -45,6 +48,17 @@ const Navbar = () => {
                 <Link to={"/profile"} className={`btn btn-sm gap-2`}>
                   <User className="size-5" />
                   <span className="hidden sm:inline">Profile</span>
+                </Link>
+                <Link to={"/request"} className={`btn btn-sm gap-2 relative`}>
+                  <UserPlusIcon className="size-5 " />
+                  <span className="hidden sm:inline ">Requests</span>
+                  {receivedRequests.length ? (
+                    <span className="hidden sm:inline absolute top-[-10px] left-[25px] bg-red-600 w-5 h-5 rounded-full text-white font-bold text-sm">
+                      {receivedRequests.length}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
                 </Link>
 
                 <Link to={"/chat"} className={`btn btn-sm gap-2`}>
