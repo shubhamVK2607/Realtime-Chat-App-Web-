@@ -20,15 +20,9 @@ const ConnectionRequestPage = () => {
   return (
     <div className="bg-base-200 h-screen">
       <div className="pt-20 px-4 flex flex-col items-center">
-        <div
-          className="bg-base-100 rounded-lg shadow-cl w-full max-w-md h-[calc(100vh-8rem)] flex flex-col items-center gap-2 overflow-auto
-          scrollbar-ultra-thin">
+        <div className="bg-base-100 rounded-lg shadow-cl w-full 2xl:max-w-6xl lg:w-full h-[calc(100vh-8rem)] flex justify-center flex-wrap gap-4 overflow-auto scrollbar-ultra-thin">
           {receivedRequests.length ? (
             <>
-              <h1 className="font-bold text-xl">
-                Request Pending : {receivedRequests.length}
-              </h1>
-
               {receivedRequests.map((request) => (
                 <ConnectionRequestsCard key={request._id} request={request} />
               ))}

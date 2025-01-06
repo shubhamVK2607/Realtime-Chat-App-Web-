@@ -8,33 +8,28 @@ const ConnectionRequestsCard = ({ request }) => {
 
   const { fullName, photoURL } = request.fromUserId;
   return (
-    <div className="card bg-base-100 shadow-xl">
-      <div className="card-body grid grid-cols-4 gap-7 w-full">
-        <div className="col-span-1 w-20 h-20">
-          <img
-            className="w-full h-full object-cover rounded-full"
-            src={photoURL || "/avatar.png"}
-            alt="User Avatar"
-          />
-        </div>
+    <div className="card card-compact bg-base-300  2xl:w-[17rem] md:w-[14rem]  shadow-xl w-full h-[22rem]  2xl:h-[22rem] md:h-[18rem] sm:h-[18rem]">
+      <figure className="h-[65%] w-full overflow-hidden">
+        <img
+          src={photoURL || "/avatar2.jpg"}
+          className="h-full w-full object-cover"
+          alt="User Avatar"
+        />
+      </figure>
+      <div className="card-body h-[35%]">
+        <h2 className="card-title text-lg font-bold text-center">{fullName}</h2>
 
-        <div className="col-span-3 flex flex-col gap-3 w-full">
-          <p className="font-bold text-3xl text-ellipsis overflow-hidden">
-            {fullName}
-          </p>
-
-          <div className="flex gap-2 w-full">
-            <button
-              onClick={() => handleConnectOrIgnore("accepted", request._id)}
-              className="py-2 px-4 bg-blue-700 text-white rounded-lg">
-              Accept
-            </button>
-            <button
-              onClick={() => handleConnectOrIgnore("rejected", request._id)}
-              className="py-2 px-4 bg-gray-700 text-white rounded-lg">
-              Reject
-            </button>
-          </div>
+        <div className="card-actions justify-end gap-2">
+          <button
+            className="btn btn-success btn-sm 2xl:btn-md text-xs 2xl:text-base"
+            onClick={() => handleConnectOrIgnore("accepted", request._id)}>
+            Accept
+          </button>
+          <button
+            className="btn btn-error btn-sm 2xl:btn-md text-xs 2xl:text-base"
+            onClick={() => handleConnectOrIgnore("rejected", request._id)}>
+            Reject
+          </button>
         </div>
       </div>
     </div>
