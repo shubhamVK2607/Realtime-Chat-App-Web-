@@ -12,7 +12,7 @@ export const useFeedStore = create((set) => ({
   getUsers: async () => {
     set({ isUsersLoading: true });
     try {
-      const res = await axiosInstance.get("/user/feed");
+      const res = await axiosInstance.get("/user/connect");
       set({ users: res.data.data.data });
     } catch (error) {
       toast.error(error.response.data.message);

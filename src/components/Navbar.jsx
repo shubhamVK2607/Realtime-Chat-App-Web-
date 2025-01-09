@@ -7,6 +7,7 @@ import {
   User,
   MessageSquareText,
   UserPlusIcon,
+  Users,
 } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useFeedStore } from "../store/useFeedStore";
@@ -53,6 +54,10 @@ const Navbar = () => {
                 <Link to={"/profile"} className={`btn btn-sm gap-2`}>
                   <User className="size-5" />
                   <span className="hidden sm:inline">Profile</span>
+                </Link>
+                <Link to={"/connect"} className={`btn btn-sm gap-2`}>
+                  <Users className="size-5" />
+                  <span className="hidden sm:inline">Add People</span>
                 </Link>
                 <Link to={"/request"} className={`btn btn-sm gap-2 relative`}>
                   <UserPlusIcon className="size-5 " />

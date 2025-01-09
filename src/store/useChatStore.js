@@ -10,7 +10,7 @@ export const useChatStore = create((set, get) => ({
   isUsersLoading: false,
   isMessagesLoading: false,
 
-  getUsers: async () => {
+  getConnections: async () => {
     set({ isUsersLoading: true });
     try {
       const res = await axiosInstance.get("/message/connections");
@@ -56,6 +56,8 @@ export const useChatStore = create((set, get) => ({
       const isMessageSentFromSelectedUser =
         newMessage.senderId === selectedUser._id;
       if (!isMessageSentFromSelectedUser) return;
+
+      console.log("hello from socket---", isMessageSentFromSelectedUser);
 
       set({
         messages: [...get().messages, newMessage],
