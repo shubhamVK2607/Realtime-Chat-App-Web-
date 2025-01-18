@@ -8,15 +8,17 @@ const PostCard = ({ post }) => {
   const { authUser } = useAuthStore();
 
   const [isAnimating, setIsAnimating] = useState(false);
-  
+
   const postLiked = post?.likes?.some((userId) => userId === authUser._id);
 
   const handleLikeClick = async () => {
-    if(!postLiked){
+    if (!postLiked) {
       setIsAnimating(true);
     }
-    
+
     await updateLikes(post._id);
+
+    setTimeout(() => setIsAnimating(false), 500);
   };
 
   return (
@@ -51,7 +53,6 @@ const PostCard = ({ post }) => {
         </div>
       )}
 
-
       <div className="border-t border-base-200 pt-3 px-6">
         <div className="flex justify-between text-sm text-base-content/70 mb-3">
           <span>
@@ -62,27 +63,21 @@ const PostCard = ({ post }) => {
           </span>
         </div>
 
-
         <div className="flex justify-around items-center text-base-content text-base font-medium">
           <button
             type="button"
             className={`relative flex items-center px-10 py-3 rounded-lg gap-2 hover:bg-base-200 transition-colors ${
-              postLiked
-                ? "text-emerald-400"
-                : ""
+              postLiked ? "text-emerald-400" : ""
             }`}
-            onClick={handleLikeClick}
-          >
-            <ThumbsUp
-              className={`w-6 h-6`}
-            />
+            onClick={handleLikeClick}>
+            <ThumbsUp className={`w-6 h-6`} />
             <span className="text-xl">Like</span>
 
-       
             {isAnimating && (
               <div
                 className="absolute -top-5 left-5 animate-fly text-emerald-500"
-                key={'fly'}
+                key="fly"
+                
               >
                 <ThumbsUp className="w-10 h-10" />
               </div>
@@ -91,15 +86,13 @@ const PostCard = ({ post }) => {
 
           <button
             type="button"
-            className="flex items-center gap-2 hover:bg-base-200  px-10 py-3 rounded-lg  "
-          >
+            className="flex items-center gap-2 hover:bg-base-200  px-10 py-3 rounded-lg  ">
             <MessageSquare className="w-5 h-5" />
             <span>Comment</span>
           </button>
           <button
             type="button"
-            className="flex items-center gap-2 hover:bg-base-200  px-10 py-3 rounded-lg  "
-          >
+            className="flex items-center gap-2 hover:bg-base-200  px-10 py-3 rounded-lg  ">
             <Share2 className="w-5 h-5" />
             <span>Share</span>
           </button>
