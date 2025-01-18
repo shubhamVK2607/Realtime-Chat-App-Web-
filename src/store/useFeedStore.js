@@ -22,14 +22,14 @@ export const useFeedStore = create((set) => ({
   },
 
   getRecivedConnectionRequests: async () => {
-    set({ isUsersLoading: true });
+    set({ isReceivedRequestsLoading: true });
     try {
       const res = await axiosInstance.get("/user/requests/received");
       set({ receivedRequests: res.data.data });
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
-      set({ isUsersLoading: false });
+      set({ isReceivedRequestsLoading: false });
     }
   },
 

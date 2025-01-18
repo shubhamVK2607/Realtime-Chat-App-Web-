@@ -6,6 +6,15 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      keyframes: {
+        fly: {
+          "0%": { transform: "translateY(0)", opacity: 1 },
+          "100%": { transform: "translateY(-50px)", opacity: 0 },
+        },
+      },
+      animation: {
+        fly: "fly 1s ease-out",
+      },
       scrollbar: {
         width: "1px", // Thin scrollbar width
         height: "1px",

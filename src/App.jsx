@@ -11,8 +11,6 @@ import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 import { useThemeStore } from "./store/useThemeStore";
 import HomePage from "./pages/HomePage";
-import ConnectionRequestPage from "./pages/ConnectionRequestPage";
-import AddFriend from "./pages/AddFriendPage";
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -41,16 +39,7 @@ const App = () => {
           path="/chat"
           element={authUser ? <ChatPage /> : <Navigate to="/login" />}
         />
-        <Route
-          path="/connect"
-          element={authUser ? <AddFriend /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/request"
-          element={
-            authUser ? <ConnectionRequestPage /> : <Navigate to="/login" />
-          }
-        />
+
         <Route
           path="/login"
           element={!authUser ? <LoginPage /> : <Navigate to="/" />}

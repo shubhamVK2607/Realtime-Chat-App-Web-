@@ -8,25 +8,29 @@ const ConnectionRequestsCard = ({ request }) => {
 
   const { fullName, photoURL } = request.fromUserId;
   return (
-    <div className="card card-compact bg-base-300  2xl:w-[17rem] md:w-[14rem]  shadow-xl w-full h-[22rem]  2xl:h-[22rem] md:h-[18rem] sm:h-[18rem]">
-      <figure className="h-[65%] w-full overflow-hidden">
+    <div className="flex items-center bg-base-300 p-4 rounded-lg shadow-md w-full max-w-2xl gap-4 border border-base-300">
+      <div className="flex-shrink-0">
         <img
           src={photoURL || "/avatar2.jpg"}
-          className="h-full w-full object-cover"
+          className="w-20 h-20 rounded-full object-cover border border-gray-300"
           alt="User Avatar"
         />
-      </figure>
-      <div className="card-body h-[35%]">
-        <h2 className="card-title text-lg font-bold text-center">{fullName}</h2>
+      </div>
 
-        <div className="card-actions justify-end gap-2">
+      {/* Details Section */}
+      <div className="flex flex-col justify-between w-full">
+        {/* User Name */}
+        <h2 className="text-lg font-bold">{fullName || "Anonymous User"}</h2>
+
+        {/* Action Buttons */}
+        <div className="flex gap-2 mt-2">
           <button
-            className="btn btn-success btn-sm 2xl:btn-md text-xs 2xl:text-base"
+            className="btn btn-success btn-sm 2xl:btn-md text-xs 2xl:text-base flex-1"
             onClick={() => handleConnectOrIgnore("accepted", request._id)}>
             Accept
           </button>
           <button
-            className="btn btn-error btn-sm 2xl:btn-md text-xs 2xl:text-base"
+            className="btn btn-error btn-sm 2xl:btn-md text-xs 2xl:text-base flex-1"
             onClick={() => handleConnectOrIgnore("rejected", request._id)}>
             Reject
           </button>

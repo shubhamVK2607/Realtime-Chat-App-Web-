@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
-import { Image, Send, X } from "lucide-react";
+import { Image, X } from "lucide-react";
 import toast from "react-hot-toast";
 import { usePostStore } from "../store/usePostStore";
 
-const PostInput = () => {
+const PostInput = ({setViewPostUploadOption}) => {
   const [text, setText] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
@@ -30,6 +30,7 @@ const PostInput = () => {
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
+    setViewPostUploadOption(false)
     if (!text.trim() && !imagePreview) return;
 
     try {
@@ -38,9 +39,12 @@ const PostInput = () => {
         image: imagePreview,
       });
 
+      console.log("chekc point")
+
       // Clear form
       setText("");
       setImagePreview(null);
+ 
       if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (error) {
       console.error("Failed to send message:", error);
@@ -48,35 +52,48 @@ const PostInput = () => {
   };
 
   return (
-    <div className="p-4 w-[70%] mt-5">
-      {imagePreview && (
-        <div className="mb-3 flex items-center gap-2">
-          <div className="relative">
-            <img
-              src={imagePreview}
-              alt="Preview"
-              className="w-20 h-20 object-cover rounded-lg border border-zinc-700"
-            />
-            <button
-              onClick={removeImage}
-              className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-base-300
-              flex items-center justify-center"
-              type="button">
-              <X className="size-3" />
-            </button>
-          </div>
-        </div>
-      )}
+    <div
+      className="w-[90%]  mx-auto mt-10 bg-base-300 rounded-xl shadow-md p-6 relative"
+      style={{ height: "80vh" }}>
+      <form onSubmit={handleSendMessage} className="flex flex-col h-full gap-4">
+        {/* Text Area */}
+        <textarea
+          type="text"
+          className="w-full text-base-content text-2xl font-medium bg-transparent rounded-lg p-4 resize-none shadow-sm focus:outline-none flex-shrink-0 "
+          placeholder="What do you want to talk about?"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
 
-      <form onSubmit={handleSendMessage} className="flex items-center gap-2">
-        <div className="flex-1 flex gap-2">
-          <input
-            type="text"
-            className="w-full text-black font-semibold text-2xl bg-white input input-bordered rounded-lg"
-            placeholder="What do you want to talk about"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
+        {/* Image Preview */}
+        {imagePreview && (
+          <div className="flex-1 overflow-y-auto scrollbar-ultra-thin mt-12">
+            <div className="relative">
+              <img
+                src={imagePreview}
+                alt="Preview"
+                className="w-full object-contain rounded-xl border border-gray-300"
+              />
+              <button
+                onClick={removeImage}
+                className="absolute top-2 right-2 w-8 h-8 rounded-full bg-gray-700 text-white
+              flex items-center justify-center"
+                type="button">
+                <X size={18} />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Bottom Send Icon */}
+        <div className="flex items-center justify-end mt-auto">
+          <button
+            type="button"
+            className={`btn btn-circle bg-gray-200 hover:bg-gray-300 p-3
+                     ${imagePreview ? "text-emerald-500" : "text-gray-500"}`}
+            onClick={() => fileInputRef.current?.click()}>
+            <Image size={24} />
+          </button>
           <input
             type="file"
             accept="image/*"
@@ -84,23 +101,16 @@ const PostInput = () => {
             ref={fileInputRef}
             onChange={handleImageChange}
           />
-
           <button
-            type="button"
-            className={`hidden sm:flex btn btn-circle
-                     ${imagePreview ? "text-emerald-500" : "text-zinc-400"}`}
-            onClick={() => fileInputRef.current?.click()}>
-            <Image size={20} />
+            type="submit"
+            className="btn bg-emerald-500 rounded-2xl hover:bg-emerald-600 text-white py-2 px-5 ml-4 text-xl"
+            disabled={!text.trim() && !imagePreview}>
+            Post
           </button>
         </div>
-        <button
-          type="submit"
-          className="btn btn-sm btn-circle"
-          disabled={!text.trim() && !imagePreview}>
-          <Send size={22} />
-        </button>
       </form>
     </div>
   );
 };
+
 export default PostInput;
