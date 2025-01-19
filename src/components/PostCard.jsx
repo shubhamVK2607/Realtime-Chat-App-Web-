@@ -18,7 +18,7 @@ const PostCard = ({ post }) => {
 
     await updateLikes(post._id);
 
-    setTimeout(() => setIsAnimating(false), 10000);
+    setTimeout(() => setIsAnimating(false), 100);
   };
 
   return (
