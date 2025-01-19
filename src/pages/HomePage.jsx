@@ -51,7 +51,7 @@ const HomePage = () => {
               <div className="w-[90%] flex gap-2 mb-10 py-4">
                 <img
                   src={authUser.photoURL || "/avatar.png"}
-                  className="w-[4.5rem] h-[4.5rem] rounded-full"
+                  className="w-[4.5rem] h-[4.5rem] rounded-full object-cover"
                   alt="User Avatar"
                 />
                 <div
