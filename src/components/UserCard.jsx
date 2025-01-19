@@ -26,7 +26,7 @@ const UserCard = ({ user }) => {
         {/* Action Buttons */}
         <div className="flex gap-2 mt-2">
           <button
-            className="btn btn-success btn-sm 2xl:btn-md text-xs 2xl:text-base flex-1"
+            className="btn btn-success  btn-sm 2xl:btn-md text-xs 2xl:text-base flex-1"
             onClick={() => handleConnectOrIgnore("interested", user._id)}>
             Connect
           </button>

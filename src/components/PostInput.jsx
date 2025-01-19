@@ -39,9 +39,6 @@ const PostInput = ({setViewPostUploadOption}) => {
         image: imagePreview,
       });
 
-      console.log("chekc point")
-
-      // Clear form
       setText("");
       setImagePreview(null);
  

@@ -54,5 +54,28 @@ export const usePostStore = create((set,get) => ({
     } finally {
       set({ isPostsLoading: false });
     }
+  },
+
+  addComments:async(postId,commentData)=>{
+    const {posts}=get()
+
+    try {
+      const res = await axiosInstance.post(`/post/comments/${postId}`,commentData);
+
+      const updatedPost = res?.data?.data; 
+
+    const updatedPosts = posts?.map((post) =>
+      post._id === updatedPost._id ? updatedPost : post
+    );
+
+    toast.success(res.data.message);
+
+    set({ posts: updatedPosts });
+
+    } catch (error) {
+      toast.error(error.response.data.message);
+    } finally {
+      set({ isPostsLoading: false });
+    }
   }
 }));

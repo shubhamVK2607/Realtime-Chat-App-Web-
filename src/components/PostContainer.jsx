@@ -8,7 +8,6 @@ import { Loader } from "lucide-react";
 const PostContainer = () => {
   const { getAllPosts, isPostsLoading,isPostUploading, posts } = usePostStore();
 
-
   useEffect(() => {
     getAllPosts();
   // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useFeedStore } from "../store/useFeedStore";
-import UserCard from "../components/UserCard";
-import UserSkeleton from "../components/skeletons/UserSkeleton";
+import UserCard from "./UserCard";
+import UserSkeleton from "./skeletons/UserSkeleton";
 
 const AddFriend = () => {
   const { getUsers, users, isUsersLoading } = useFeedStore();
