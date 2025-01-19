@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import AuthImagePattern from "../components/AuthImagePattern";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare } from "lucide-react";
+import SocialMediaAuthImagePattern from "../components/ImagePattern";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -10,12 +10,17 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
+
+
+
   const { login, isLoggingIn } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     login(formData);
   };
+
+
 
   return (
     <div className="h-screen grid lg:grid-cols-2">
@@ -28,7 +33,7 @@ const LoginPage = () => {
               transition-colors">
                 <MessageSquare className="w-6 h-6 text-primary" />
               </div>
-              <h1 className="text-2xl font-bold mt-2">Welcome Back</h1>
+              <h1 className="text-3xl font-bold mt-2">Welcome Back</h1>
               <p className="text-base-content/60">Sign in to your account</p>
             </div>
           </div>
@@ -112,12 +117,12 @@ const LoginPage = () => {
       </div>
 
       {/* Right Side - Image/Pattern */}
-      <AuthImagePattern
-        title={"Welcome back!"}
-        subtitle={
-          "Sign in to continue your conversations and catch up with your messages."
-        }
+
+      <SocialMediaAuthImagePattern
+        title="Engage with Friends"
+        subtitle="Sign in to your account and stay connected."
       />
+
     </div>
   );
 };

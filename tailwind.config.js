@@ -11,9 +11,13 @@ export default {
           "0%": { transform: "translateY(0)", opacity: 1 },
           "100%": { transform: "translateY(-50px)", opacity: 0 },
         },
+
       },
       animation: {
         fly: "fly 1s ease-out",
+        bounce: "bounce 2s infinite",
+        spin: "spin 3s linear infinite",
+        pulse: "pulse 2s infinite",
       },
       scrollbar: {
         width: "1px", // Thin scrollbar width

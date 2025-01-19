@@ -10,11 +10,12 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
-import AuthImagePattern from "../components/AuthImagePattern";
+import ProfilePhoto from "../components/ProfilePhoto";
 import toast from "react-hot-toast";
 
 const SignupPage = () => {
   const { isSigningUp, signup } = useAuthStore();
+  const [selectedImg, setSelectedImg] = useState(null);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -41,6 +42,23 @@ const SignupPage = () => {
 
     if (success === true) signup(formData);
   };
+
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = async () => {
+      const base64Image = reader.result;
+
+      setSelectedImg(base64Image);
+    };
+  };
+
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
       {/* left side */}
@@ -160,9 +178,9 @@ const SignupPage = () => {
 
       {/* right side */}
 
-      <AuthImagePattern
-        title="Join our community"
-        subtitle="Connect with friends, share moments, and stay in touch with your loved ones."
+      <ProfilePhoto
+      handleImageUpload={handleImageUpload}
+      selectedImgo={selectedImg}
       />
     </div>
   );
