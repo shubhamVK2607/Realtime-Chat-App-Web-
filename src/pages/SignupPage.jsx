@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 const SignupPage = () => {
   const { isSigningUp, signup } = useAuthStore();
   const [selectedImg, setSelectedImg] = useState(null);
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -46,16 +47,20 @@ const SignupPage = () => {
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
+
     if (!file) return;
 
     const reader = new FileReader();
 
     reader.readAsDataURL(file);
 
+
+
     reader.onload = async () => {
       const base64Image = reader.result;
 
       setSelectedImg(base64Image);
+      setFormData({ ...formData, photoURL: base64Image })
     };
   };
 
@@ -180,7 +185,7 @@ const SignupPage = () => {
 
       <ProfilePhoto
       handleImageUpload={handleImageUpload}
-      selectedImgo={selectedImg}
+      selectedImg={selectedImg}
       />
     </div>
   );

@@ -1,9 +1,11 @@
 
-import { useAuthStore } from "../store/useAuthStore";
+
 import { Camera } from "lucide-react";
 
 const ProfilePhoto = ({handleImageUpload,selectedImg}) => {
-  const { isUpdatingProfile } = useAuthStore();
+
+
+
 
 
   return (
@@ -26,9 +28,7 @@ const ProfilePhoto = ({handleImageUpload,selectedImg}) => {
             <div>
               <label
                 htmlFor="avatar-upload"
-                className={`btn btn-primary flex items-center gap-2 ${
-                  isUpdatingProfile ? "opacity-50 pointer-events-none" : ""
-                }`}
+                className={`btn btn-primary flex items-center gap-2 `}
               >
                 <Camera className="w-5 h-5" />
                 Add Profile Photo
@@ -38,7 +38,7 @@ const ProfilePhoto = ({handleImageUpload,selectedImg}) => {
                   className="hidden"
                   accept="image/*"
                   onChange={handleImageUpload}
-                  disabled={isUpdatingProfile}
+           
                 />
               </label>
             </div>
